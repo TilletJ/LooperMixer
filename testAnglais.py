@@ -46,7 +46,10 @@ if __name__=='__main__':
     
     pygame.init()
 
-    fenetre = pygame.display.set_mode((650, 550))
+    width = 650
+    height = 550
+
+    fenetre = pygame.display.set_mode((width, height))
     image_fond = pygame.image.load("01_Colordrilos_-_DJ_Sliver.jpg")
     fond = image_fond.convert()
     fenetre.blit(fond,(0,0))
@@ -55,17 +58,31 @@ if __name__=='__main__':
    
     continuer = 1  # Variable de boucle
 
-    files = os.listdir("test")
+    listDir = []
+
+    listDir.append(os.path.join("samples","drum"))
+    listDir.appent(os.path.join("samples", "bass"))
+    listDir.append(os.path.join("samples", "melody"))
     
     buttons = []
-    for i in range (len(files)):
-        try:
-            pos = (80*i, 80*i)
-            size = (40, 40)
-            sound_path = os.path.join("test", files[i])
-            buttons.append(Bouton(pos, size, sound_path))
-        except:
-            pass
+
+
+    for i in range(len(listDir)):
+        d = listDir[i]
+        files = os.listdir(d)
+        step = width/len(files)
+        
+        for j in range(len(files)) :
+            try:
+                file = files[j]
+                pos = (step*j, 50*i)
+                size = (step-2, 50-2)
+                sound_path = os.path.join(d, file)
+                buttons.append(Bouton(pos, size, sound_path))
+            except:
+                pass
+
+
 
     
     start = time.time()
