@@ -10,6 +10,7 @@ import pygame.event as ev
 import pygame.mixer as mix
 import os
 import time
+import numpy as np
 from threading import Timer
 
 RED = (255, 0, 0)
@@ -25,30 +26,33 @@ KEYS = (57, 74, 39)
 PERCUSSIONS = (74, 39, 39)
 SEQUENCES = (74, 39, 53)
 
+COLORS_USED = [DRUMS, GUITAR, SEQUENCES]
+
 color_index = 0
 NB_BUTTONS = 5
 loop_duration = 1.92
 total_time = 10
 
- 
+
 
 class Bouton():
-    def __init__(self, pos, size, sound_path):
+    def __init__(self, pos, size, sound_path, color):
         self.rect = pygame.Rect(pos, size)
         self.surf = pygame.Surface(self.rect.size)
         self.sound = mix.Sound(sound_path)
         self.isplaying = False
-        self.surf.fill(RED)
-       
+        self.color = 1.8*np.array(color)
+        self.surf.fill(list(0.7*self.color))
+
     def toggle(self):
         if self.isplaying:
             self.sound.stop()
-            self.surf.fill(RED)
+            self.surf.fill(list(0.8*self.color))
         else:
             self.sound.play(loops=-1)
-            self.surf.fill(GREEN)
+            self.surf.fill(list(self.color))
         self.isplaying = not self.isplaying
-        
+
 
 if __name__=='__main__':
     mix.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
@@ -87,13 +91,11 @@ if __name__=='__main__':
                 pos = (step*j, 50*i)
                 size = (step-2, 50-2)
                 sound_path = os.path.join(d, file)
-                buttons.append(Bouton(pos, size, sound_path))
+                buttons.append(Bouton(pos, size, sound_path, color=COLORS_USED[i]))
             except:
                 pass
 
 
-
-    
     start = time.time()
     while continuer:
         for event in ev.get():
