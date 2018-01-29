@@ -79,7 +79,6 @@ if __name__=='__main__':
     for i in range(len(listDir)):
         d = listDir[i]
         files = os.listdir(d)
-        print(files)
         step = width/len(files)
         
         for j in range(len(files)) :
