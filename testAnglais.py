@@ -16,6 +16,15 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 COLORS = (RED, GREEN, BLUE)
+BASS = ()
+BRASS = (39, 74, 74)
+DRUMS = (39, 74, 60)
+FX = (39, 74, 48)
+GUITAR = (44, 74, 39)
+KEYS = (57, 74, 39)
+PERCUSSIONS = (74, 39, 39)
+SEQUENCES = (74, 39, 53)
+
 color_index = 0
 NB_BUTTONS = 5
 loop_duration = 2
