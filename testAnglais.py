@@ -27,7 +27,7 @@ SEQUENCES = (74, 39, 53)
 
 color_index = 0
 NB_BUTTONS = 5
-loop_duration = 2
+loop_duration = 1.92
 total_time = 10
 
  
@@ -69,9 +69,9 @@ if __name__=='__main__':
 
     listDir = []
 
-    listDir.append(os.path.join("samples","drum"))
-    listDir.appent(os.path.join("samples", "bass"))
-    listDir.append(os.path.join("samples", "melody"))
+    listDir.append(os.path.join("samples","Drums"))
+    listDir.append(os.path.join("samples", "Bass"))
+    listDir.append(os.path.join("samples", "Melodies"))
     
     buttons = []
 
@@ -79,6 +79,7 @@ if __name__=='__main__':
     for i in range(len(listDir)):
         d = listDir[i]
         files = os.listdir(d)
+        print(files)
         step = width/len(files)
         
         for j in range(len(files)) :
